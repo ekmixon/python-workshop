@@ -29,14 +29,14 @@ packid = ET.fromstring(r.text).findtext('id')
 ## curl subprocess way
 
 # Curl expects auth information as a ':' delimited string.
-auth = '{}:{}'.format(user, pwd)
+auth = f'{user}:{pwd}'
 
 command =  ["curl", "-u", auth, '-s']
 command += ['-X', 'POST', 'https://suncorp.jamfcloud.com/dbfileupload']
 command += ['--header', 'DESTINATION: 0']
 command += ['--header', 'OBJECT_ID: -1' ]
 command += ['--header', 'FILE_TYPE: 0'  ]
-command += ['--header', 'FILE_NAME: {}'.format(fname) ]
+command += ['--header', f'FILE_NAME: {fname}']
 command += ['--upload-file', path ]
 
 output = subprocess.check_output(command)
